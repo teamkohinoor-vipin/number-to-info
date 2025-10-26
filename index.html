@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoFinder - Multi-Search Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1>🔍 InfoFinder</h1>
+            <p>Multi-Search Portal - Find information using Mobile, Aadhaar, Vehicle, Family, or IFSC Code</p>
+            <div class="api-badge">Powered by TaitanInfo APIs</div>
+        </div>
+
+        <div class="search-section">
+            <div class="search-type-selector">
+                <div class="search-type active" data-type="mobile">
+                    📱 Mobile
+                </div>
+                <div class="search-type" data-type="aadhar">
+                    🆔 Aadhaar
+                </div>
+                <div class="search-type" data-type="vehicle">
+                    🚗 Vehicle
+                </div>
+                <div class="search-type" data-type="family">
+                    👨‍👩‍👧‍👦 Family
+                </div>
+                <div class="search-type" data-type="ifsc">
+                    🏦 IFSC Code
+                </div>
+            </div>
+
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="searchInput"
+                    placeholder="Enter mobile number (e.g., 9876543210)"
+                    maxlength="10"
+                >
+                <button class="search-btn" id="searchBtn">
+                    <span class="btn-text">Search</span>
+                    <span class="loading-spinner" style="display: none;">⏳</span>
+                </button>
+            </div>
+            <div class="input-hint" id="inputHint">
+                Enter 10-digit mobile number
+            </div>
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+
+        <div id="loadingSteps" class="loading-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-text">Connecting to database...</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-text">Fetching information...</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">Processing data...</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-text">Generating results...</div>
+            </div>
+        </div>
+
+        <div class="map-container" id="map"></div>
+
+        <div id="resultsContainer" class="results-container">
+            <div class="results-header">
+                <h2 class="results-title" id="resultsTitle">
+                    <span id="resultsIcon">📱</span>
+                    <span id="resultsType">Mobile Number</span> Details
+                </h2>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="fetchAadhaarBtn">
+                        🆔 Fetch Aadhaar Details
+                    </button>
+                    <button class="btn btn-secondary" id="newSearchBtn">
+                        🔄 New Search
+                    </button>
+                </div>
+            </div>
+            
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be populated here -->
+            </div>
+        </div>
+
+        <a href="https://t.me/DiscardedDiamondBot" target="_blank" class="support-btn">
+            💬 Support
+        </a>
+
+        <div class="footer">
+            <p>InfoFinder - Multi-Search Portal | For authorized use only</p>
+            <p class="footer-subtext">Data sourced from verified APIs</p>
+        </div>
+    </div>
+
+    <div id="errorModal" class="error-modal">
+        <div class="modal-content">
+            <div class="modal-icon">❌</div>
+            <h3 class="modal-title">Information Not Found</h3>
+            <p class="modal-text">
+                The requested information was not found in our database. 
+                Please verify the input and try again.
+            </p>
+            <button class="btn btn-primary" id="tryAgainBtn">
+                Try Again
+            </button>
+            <a href="https://t.me/DiscardedDiamondBot" target="_blank" 
+               class="btn btn-secondary">
+                Contact Support
+            </a>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+                  </html>
